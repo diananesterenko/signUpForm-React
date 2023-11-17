@@ -1,0 +1,89 @@
+$primary-color: rgb(67, 213, 131);
+$border-color: rgb(151, 181, 164);
+$input-border-radius: 6px;
+body {
+  background-color: rgb(233, 239, 240);
+  font-family: "Courier New", Courier, monospace;
+}
+.formContainer {
+  margin: 50px auto;
+  width: 99%;
+  max-width: 450px;
+  min-width: 300px;
+  padding-top: 20px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 3px 10px rgba(128, 128, 128, 0.534);
+}
+.form {
+  padding: 0px 40px;
+  margin: 18px;
+}
+.formTitle {
+  text-align: center;
+  font-size: 28px;
+  color: $border-color;
+}
+.formlabel {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  color: $primary-color;
+  font-weight: bold;
+}
+.formlabelCheckBox {
+  display: flex;
+}
+.formInput {
+  padding: 10px 10px;
+  border-radius: $input-border-radius;
+  border: 1px solid $border-color;
+}
+.formlabel p {
+  margin-bottom: 6px;
+}
+.formInputCheckBox {
+  width: 18px;
+  margin-right: 10px;
+}
+.button {
+  background-color: $primary-color;
+  color: white;
+  width: 100%;
+  padding: 15px 0px;
+  border-radius: $input-border-radius;
+  border: 1px solid $border-color;
+  margin: 20px 0px;
+}
+.valid {
+  background-color: $border-color;
+  border: 1px solid $primary-color;
+}
+.invalid {
+  background-color: darksalmon;
+  border: 1px solid rgb(218, 70, 21);
+}
+.eye {
+  font-size: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-left: 85%;
+  margin-top: -27px;
+  color: rgb(80, 80, 80);
+}
+.eye:hover {
+  cursor: pointer;
+}
+.mainIcon {
+  text-align: center;
+  width: 70px;
+  height: 70px;
+  font-size: 24px;
+  background-color: $primary-color;
+  border-radius: 50%;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: 0 auto;
+}
