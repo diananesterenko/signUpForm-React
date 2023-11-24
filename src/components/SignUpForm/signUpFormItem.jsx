@@ -1,5 +1,5 @@
 import { FiEdit } from "react-icons/fi";
-
+import classNames from "classnames";
 import styles from "./SignUpForm.module.scss";
 import FormLabel from "./FormLabel";
 
@@ -8,7 +8,6 @@ function SignUpFormItem(props) {
     nameClassName,
     emailClassName,
     passwordClassName,
-    passwordConfimClassName,
     name,
     email,
     password,
@@ -18,11 +17,24 @@ function SignUpFormItem(props) {
     handleAgreeChange,
     handleEmailChange,
     handleNameChange,
-    handlePasswordChange,
     handlePasswordConfimChange,
+    handlePasswordChange,
+    isPasswordConfirmTouched,
     handleSubmit,
     handleVisibilityChange,
+    SIGNUP_FORM_REG_EXP,
   } = props;
+  const passwordConfimClassName = classNames(styles.formInput, {
+    [styles.valid]:
+      isPasswordConfirmTouched &&
+      SIGNUP_FORM_REG_EXP.password.test(passwordConfim) &&
+      passwordConfim === password,
+    [styles.invalid]:
+      (isPasswordConfirmTouched &&
+        !SIGNUP_FORM_REG_EXP.password.test(passwordConfim)) ||
+      passwordConfim !== password,
+  });
+
   return (
     <div className={styles.formContainer}>
       <span className={styles.mainIcon}>
@@ -67,7 +79,11 @@ function SignUpFormItem(props) {
           handleOnClick={handleVisibilityChange}
         />
         <FormLabel
-          className={passwordConfimClassName}
+          className={
+            isPasswordConfirmTouched
+              ? passwordConfimClassName
+              : styles.formInput
+          }
           value={passwordConfim}
           placeholder={"Password Confirmation"}
           name={"passwordConfim"}

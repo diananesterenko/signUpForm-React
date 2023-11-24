@@ -18,16 +18,16 @@ function SignUpForm() {
   const [nameClassName, setNameClassName] = useState(styles.formInput);
   const [emailClassName, setEmailClassName] = useState(styles.formInput);
   const [passwordClassName, setPasswordClassName] = useState(styles.formInput);
-  const [passwordConfimClassName, setPasswordConfimClassName] = useState(
-    styles.formInput
-  );
+
+  const [isPasswordConfirmTouched, setIsPasswordConfirmTouched] =
+    useState(false);
 
   const handleNameChange = function ({ target: { value } }) {
     setName(value);
     setNameClassName(
       classNames(styles.formInput, {
-        [styles.valid]: SIGNUP_FORM_REG_EXP.name.test(name),
-        [styles.invalid]: !SIGNUP_FORM_REG_EXP.name.test(name),
+        [styles.valid]: SIGNUP_FORM_REG_EXP.name.test(value),
+        [styles.invalid]: !SIGNUP_FORM_REG_EXP.name.test(value),
       })
     );
   };
@@ -35,8 +35,8 @@ function SignUpForm() {
     setEmail(value);
     setEmailClassName(
       classNames(styles.formInput, {
-        [styles.valid]: SIGNUP_FORM_REG_EXP.email.test(email),
-        [styles.invalid]: !SIGNUP_FORM_REG_EXP.email.test(email),
+        [styles.valid]: SIGNUP_FORM_REG_EXP.email.test(value),
+        [styles.invalid]: !SIGNUP_FORM_REG_EXP.email.test(value),
       })
     );
   };
@@ -44,23 +44,16 @@ function SignUpForm() {
     setPassword(value);
     setPasswordClassName(
       classNames(styles.formInput, {
-        [styles.valid]: SIGNUP_FORM_REG_EXP.password.test(password),
-        [styles.invalid]: !SIGNUP_FORM_REG_EXP.password.test(password),
+        [styles.valid]: SIGNUP_FORM_REG_EXP.password.test(value),
+        [styles.invalid]: !SIGNUP_FORM_REG_EXP.password.test(value),
       })
     );
   };
+
   const handlePasswordConfimChange = function ({ target: { value } }) {
     setPasswordConfim(value);
-    setPasswordConfimClassName(
-      classNames(styles.formInput, {
-        [styles.valid]:
-          SIGNUP_FORM_REG_EXP.password.test(passwordConfim) &&
-          passwordConfim === password,
-        [styles.invalid]:
-          !SIGNUP_FORM_REG_EXP.password.test(passwordConfim) ||
-          passwordConfim !== password,
-      })
-    );
+
+    setIsPasswordConfirmTouched(true);
   };
   const handleAgreeChange = function ({ target: { value } }) {
     setIsAgree(!isAgree);
@@ -82,10 +75,11 @@ function SignUpForm() {
 
   return (
     <SignUpFormItem
+      SIGNUP_FORM_REG_EXP={SIGNUP_FORM_REG_EXP}
+      isPasswordConfirmTouched={isPasswordConfirmTouched}
       nameClassName={nameClassName}
       emailClassName={emailClassName}
       passwordClassName={passwordClassName}
-      passwordConfimClassName={passwordConfimClassName}
       name={name}
       email={email}
       password={password}
